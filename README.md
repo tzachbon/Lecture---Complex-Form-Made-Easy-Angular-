@@ -284,7 +284,12 @@ export class FormContainerComponent implements OnInit {
 </form>
 ```
 
-
 # And that's it! We Are done!
 
+My name is [Tzach Bonfil](https://tzachbonfilportfolio.web.app/) and I am a Senior Frontend Engineer in Intelligo.
+
+If you have any question i would be more than happy to answer!
+[tzachbonfil@gmail.com](mailto:tzachbonfil@gmail.com).
+
+Or you can reach me on [Linkedin](https://www.linkedin.com/in/tzach-bonfil-21b822187/)
 
