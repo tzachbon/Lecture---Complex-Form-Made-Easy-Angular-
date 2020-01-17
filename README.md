@@ -1,3 +1,13 @@
+# Complex Form Made Easy With Angular
+### Forms are the life of the website world. If it is simple or super complex forms each site contains almost at least one form. In this lecture, we will learn how Enugler helps us make complex forms with ease
+
+#
+
+### Let's start with a project and demonstrate how easy it is!
+
+#
+
+
 ##  Creating the project
 
 ``` shell
@@ -135,7 +145,7 @@ export class FormContainerComponent implements OnInit {
 
 ## But wait! We want to add more interesting and complex things!
 
-Let's add date of bight field for the user.
+Let's add date of birth field for the user.
 But wait, what can we do if we want dynamic inputs?
 
 Like if our hero fought a lot of villains and we want to know all their names.
