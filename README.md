@@ -298,7 +298,7 @@ export class FormContainerComponent implements OnInit {
 
 ![I'm Done](https://media0.giphy.com/media/3o7qDEq2bMbcbPRQ2c/giphy.gif?cid=790b76115f8823e99a2be1cd3b062492cdc3243162a56ae0&rid=giphy.gif)
 
-My name is [Tzach Bonfil](https://tzachbonfilportfolio.web.app/) and I am a Senior Frontend Engineer in Intelligo.
+My name is [Tzach Bonfil](https://tzachbonfilportfolio.web.app/) and I am a Senior Frontend Engineer in [Intelligo](https://intelligo.ai/).
 
 If you have any question i would be more than happy to answer!
 [tzachbonfil@gmail.com](mailto:tzachbonfil@gmail.com).
