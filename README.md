@@ -1,12 +1,12 @@
 ##  Creating the project
 
-
-```shell
+``` shell
 ng new MyHero
 ```
 
-## Now let go to the App Module file and add the needed imports
-```typescript
+## Now let's go to the App Module file and add the needed imports
+
+``` typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -28,11 +28,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class AppModule { }
 
-
 ```
 
 ## Adding Angular Material
+
 We'll add the library to provide us with ui elements so we don't have to write everything from scratch
-```shell
+
+``` shell
 ng add @angular/material
 ```
+
+## Create the form container component
+
+``` shell
+ng g c src/app/container/form-container
+```
+
