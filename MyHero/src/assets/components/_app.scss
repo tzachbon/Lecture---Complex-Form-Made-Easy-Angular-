@@ -1,0 +1,28 @@
+.my-hero {
+  @include flex-center;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 1) 70%, rgba(7, 121, 255, 1) 70%);
+  width     : 100%;
+  height    : 100%;
+
+
+  &-form {
+
+    @include box-shadow-3;
+    position                  : relative;
+    height                    : 70%;
+    width                     : 70%;
+    background                : rgb(34, 34, 34);
+    border-top-right-radius   : 1rem;
+    border-bottom-right-radius: 1rem;
+
+
+    &::after {
+      content   : '';
+      position  : absolute;
+      height    : 5rem;
+      width     : 5rem;
+      background: rgba(7, 121, 255, 1);
+    }
+  }
+}
