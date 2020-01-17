@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormContainerComponent } from './container/form-container/form-container.component';
-import { MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatIconModule, MatButtonModule } from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,10 +20,12 @@ import { MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateM
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [
-    
+
   ],
   bootstrap: [AppComponent]
 })

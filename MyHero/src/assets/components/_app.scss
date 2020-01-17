@@ -5,36 +5,73 @@
   width     : 100%;
   height    : 100%;
 
+  &-title {
+
+  }
+
 
   &-form {
 
     @include box-shadow-3;
     position                  : relative;
-    height                    : 70%;
+    min-height                : 70%;
     width                     : 70%;
     background                : rgb(34, 34, 34);
     border-top-right-radius   : 1rem;
     border-bottom-right-radius: 1rem;
     font-size                 : 1.5rem;
     padding                   : 10rem;
+    transition                : all .15s $easing;
 
     form {
       @include flex-column;
-      padding: 10rem;
+
+      h1 {
+        color: white;
+      }
+
+      .villain-fought-container {
+        @include flex-column;
+        align-items: center;
+
+        .title-container {
+          @include flex-row;
+          margin-bottom: 1rem;
+        }
+
+        .control {
+          @include flex-row;
+          align-items: center;
+
+          .mat-icon {
+            cursor: pointer;
+          }
+
+          button {
+            margin       : 1rem;
+            margin-bottom: 1rem;
+          }
+
+        }
+      }
 
       input::placeholder {
         color: white;
+      }
+
+      .add-icon {
+        cursor: pointer;
       }
 
       .mat-form-field-appearance-outline .mat-form-field-outline {
         color: white;
       }
 
-      .mat-icon,.mat-icon-button svg {
+      .mat-icon,
+      .mat-icon-button svg {
         color: white;
       }
 
-      /* Font color */
       input.mat-input-element {
         color: white;
       }
