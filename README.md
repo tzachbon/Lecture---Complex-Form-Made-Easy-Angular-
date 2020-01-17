@@ -1,12 +1,12 @@
 ##  Creating the project
 
 
-```bash
+```shell
 ng new MyHero
 ```
 
 ## Now let go to the App Module file and add the needed imports
-```angular
+```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -29,4 +29,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class AppModule { }
 
 
+```
+
+## Adding Angular Material
+We'll add the library to provide us with ui elements so we don't have to write everything from scratch
+```shell
+ng add @angular/material
 ```
