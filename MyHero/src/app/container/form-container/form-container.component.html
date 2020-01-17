@@ -1,0 +1,22 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="First Name" formControlName="firstName" />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Last Name" formControlName="lastName" />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input
+      matInput
+      [matDatepicker]="picker"
+      formControlName="dateOfBirth"
+      placeholder="Choose a date"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <button [disabled]="form.invalid && form.touched" type="submit">
+    Submit
+  </button>
+</form>

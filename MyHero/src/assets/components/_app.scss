@@ -15,11 +15,48 @@
     background                : rgb(34, 34, 34);
     border-top-right-radius   : 1rem;
     border-bottom-right-radius: 1rem;
+    font-size                 : 1.5rem;
+    padding                   : 10rem;
+
+    form {
+      @include flex-column;
+      padding: 10rem;
+
+      input::placeholder {
+        color: white;
+      }
+
+      .mat-form-field-appearance-outline .mat-form-field-outline {
+        color: white;
+      }
+
+      .mat-icon,.mat-icon-button svg {
+        color: white;
+      }
+
+      /* Font color */
+      input.mat-input-element {
+        color: white;
+      }
+
+      button {
+        &[type="submit"] {
+          @extend .Button;
+        }
+
+        &:disabled {
+          opacity       : .5;
+          pointer-events: none;
+        }
+      }
+    }
 
 
     &::after {
       content   : '';
       position  : absolute;
+      top       : 0;
+      left      : 0;
       height    : 5rem;
       width     : 5rem;
       background: rgba(7, 121, 255, 1);
