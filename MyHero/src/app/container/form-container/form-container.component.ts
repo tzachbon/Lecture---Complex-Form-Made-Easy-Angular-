@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormArray, AbstractControl, ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, take } from 'rxjs/operators';
+import { checkUserName } from './form-container.util';
+
+
 
 function biggerThan18(control: AbstractControl): null | ValidationErrors {
 
   const birthDate = control.value;
 
   if (!(birthDate instanceof Date)) {
-    return { invalidDateFormat: false };
+    return { invalidDateFormat: true };
   }
 
   const today = new Date();
@@ -19,8 +24,23 @@ function biggerThan18(control: AbstractControl): null | ValidationErrors {
 
 
   return age >= 18 ? null : {
-    notBigEnough: false
+    notBigEnough: true
   };
+}
+
+
+function heroNameValidator(control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
+
+  return checkUserName(control.value)
+    .pipe(
+      debounceTime(500),
+      take(1),
+      map(isIncluded => (
+        isIncluded ? {
+          isIncluded: true
+        } : null
+      ))
+    );
 }
 
 
@@ -42,7 +62,7 @@ export class FormContainerComponent implements OnInit {
 
   initForm() {
     this.form = new FormGroup({
-      username: new FormControl('', [Validators.required]),
+      username: new FormControl('', [Validators.required], [heroNameValidator]),
       dateOfBirth: new FormControl('', [biggerThan18]),
       villainFought: new FormArray([
         new FormControl('', [Validators.required])
@@ -63,6 +83,11 @@ export class FormContainerComponent implements OnInit {
   }
 
 
+  get usernameControl() {
+    return this.form.get('username');
+  }
+
+
   get villainFoughtArray() {
     return this.form ? (
       (this.form.controls.villainFought as FormArray).controls
@@ -70,7 +95,9 @@ export class FormContainerComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value);
+    // console.log(this.form.value);
+    console.log(this.usernameControl.errors);
+
 
   }
 

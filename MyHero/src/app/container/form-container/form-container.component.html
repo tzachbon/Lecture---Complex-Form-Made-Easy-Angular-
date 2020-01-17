@@ -1,6 +1,21 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="outline">
     <input matInput placeholder="Hero name" formControlName="username" />
+    <!-- To show to the user the check status -->
+    <mat-icon class="mat-18" matSuffix *ngIf="usernameControl.touched">
+      <ng-container *ngIf="usernameControl.pending">
+        cached
+      </ng-container>
+      <ng-container *ngIf="usernameControl.valid">
+        done
+      </ng-container>
+      <ng-container *ngIf="usernameControl.invalid">
+        error
+      </ng-container>
+    </mat-icon>
+    <mat-error *ngIf="usernameControl.errors?.isIncluded">
+      User name already taken
+    </mat-error>
   </mat-form-field>
 
   <!-- This is the date template -->
@@ -42,7 +57,10 @@
     </div>
   </section>
 
-  <button [disabled]="form.invalid && form.touched" type="submit">
+  <button
+    [disabled]="(form.invalid && form.touched) || usernameControl.pending"
+    type="submit"
+  >
     Submit
   </button>
 </form>
