@@ -92,12 +92,10 @@ export class AppModule { }
 
 ``` html
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline">
-        <input matInput placeholder="First Name" formControlName="firstName" />
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <input matInput placeholder="Last Name" formControlName="lastName" />
-    </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Hero name" formControlName="username" />
+  </mat-form-field>
+
 
     <button [disabled]="form.invalid && form.touched" type="submit">Submit</button>
 </form>
@@ -125,8 +123,7 @@ export class FormContainerComponent implements OnInit {
 
   initForm() {
     this.form = new FormGroup({
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required])
+      username: new FormControl('', [Validators.required]),
     });
   }
 
@@ -214,8 +211,7 @@ export class FormContainerComponent implements OnInit {
 
   initForm() {
     this.form = new FormGroup({
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
+      username: new FormControl('', [Validators.required]),
       dateOfBirth: new FormControl('', []), // This is the date control
       villainFought: new FormArray([ // Here we initial form array with one control already in it
         new FormControl('', [Validators.required])
@@ -257,12 +253,9 @@ export class FormContainerComponent implements OnInit {
 
 ``` html
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline">
-        <input matInput placeholder="First Name" formControlName="firstName" />
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <input matInput placeholder="Last Name" formControlName="lastName" />
-    </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Hero name" formControlName="username" />
+  </mat-form-field>
 
     <!-- This is the date template -->
     <mat-form-field appearance="outline">
@@ -344,8 +337,7 @@ And add the function to the form group:
 ```typescript
  initForm() {
     this.form = new FormGroup({
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
+      username: new FormControl('', [Validators.required]),
       dateOfBirth: new FormControl('', [biggerThan18]), // <=== HERE 
       villainFought: new FormArray([
         new FormControl('', [Validators.required])
