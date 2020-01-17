@@ -1,5 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray, AbstractControl, ValidationErrors } from '@angular/forms';
+
+function biggerThan18(control: AbstractControl): null | ValidationErrors {
+
+  const birthDate = control.value;
+
+  if (!(birthDate instanceof Date)) {
+    return { invalidDateFormat: false };
+  }
+
+  const today = new Date();
+  const m = today.getMonth() - birthDate.getMonth();
+  let age = today.getFullYear() - birthDate.getFullYear();
+
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+
+
+  return age >= 18 ? null : {
+    notBigEnough: false
+  };
+}
+
+
+
 
 @Component({
   selector: 'app-form-container',
@@ -19,7 +44,7 @@ export class FormContainerComponent implements OnInit {
     this.form = new FormGroup({
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
-      dateOfBirth: new FormControl('', []),
+      dateOfBirth: new FormControl('', [biggerThan18]),
       villainFought: new FormArray([
         new FormControl('', [Validators.required])
       ])

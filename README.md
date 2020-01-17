@@ -306,3 +306,52 @@ If you have any question i would be more than happy to answer!
 Or you can reach me on [Linkedin](https://www.linkedin.com/in/tzach-bonfil-21b822187/)
 
 Thank You!
+
+# What? you want do custom validation and async validation, Let's do it!
+## Optional
+
+Let's say we want our hero to only bigger that 18.
+if his date of birth indicates that is younger than 18 the whole form isn't valid.
+
+We should make a function for it:
+
+``` typescript
+
+function biggerThan18(control: AbstractControl): null | ValidationErrors {
+
+  const birthDate = control.value;
+
+  if (!(birthDate instanceof Date)) {
+    return { invalidDateFormat: false };
+  }
+
+  const today = new Date();
+  const m = today.getMonth() - birthDate.getMonth();
+  let age = today.getFullYear() - birthDate.getFullYear();
+
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+
+  return age >= 18 ? null : {
+    notBigEnough: false
+  };
+}
+```
+
+And add the function to the form group:
+
+```typescript
+ initForm() {
+    this.form = new FormGroup({
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
+      dateOfBirth: new FormControl('', [biggerThan18]), // <=== HERE 
+      villainFought: new FormArray([
+        new FormControl('', [Validators.required])
+      ])
+    });
+  }
+```
+
+## This is that easy.
