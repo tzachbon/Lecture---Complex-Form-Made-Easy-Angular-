@@ -1,6 +1,6 @@
 # Complex Form Made Easy With Angular
 
-### Forms are the life of the website world. If it is simple or super complex forms each site contains almost at least one form. In this lecture, we will learn how Enugler helps us make complex forms with ease
+### Forms are the life of the website world. If it is simple or super complex forms each site contains almost at least one form. In this lecture, we will learn how Angular helps us make complex forms with ease
 
 #
 
@@ -294,7 +294,7 @@ export class FormContainerComponent implements OnInit {
 
 ## Optional
 
-Let's say we want our hero to only bigger that 18.
+Let's say we want our hero to be bigger that 18.
 if his date of birth indicates that is younger than 18 the whole form isn't valid.
 
 We should make a function for it:
@@ -343,7 +343,7 @@ And add the function to the form group:
 
 ### Async validators
 
-Async validators are exactly like custom validators but they return Promise | Observable with the same format.
+Async validators are exactly like custom validators but they return Promise or Observable with the same format.
 
 I made a function for demo proposes that behave like api end point and returns an observable which is boolean.
 If the username is included or not.
