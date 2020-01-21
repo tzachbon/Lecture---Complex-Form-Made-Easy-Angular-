@@ -122,4 +122,4 @@ function heroNameValidator(
 
 # And again we are done for good!
 
-![WE DONE](https://media.giphy.com/media/U6pavBhRsbNbPzrwWg/giphy.gif)
+![WE DONE](https://i.giphy.com/media/U6pavBhRsbNbPzrwWg/giphy.webp)
