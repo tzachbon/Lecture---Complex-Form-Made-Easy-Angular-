@@ -109,7 +109,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "/Lecture---Complex-Form-Made-Easy-Angular-/",
+            "baseHref": "https://tzachbon.github.io/Lecture---Complex-Form-Made-Easy-Angular-/",
             "name": "Tzach Bonfil",
             "email": "tzachbonfil@gmail.com"
           }

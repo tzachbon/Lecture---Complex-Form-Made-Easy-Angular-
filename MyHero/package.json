@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:git": "ng build --prod --base-href Lecture---Complex-Form-Made-Easy-Angular- && ngh"
+    "build:git": "ng deploy && ngh --dir=dist/MyHero"
   },
   "author": "Tzach Bonfil",
   "private": false,
