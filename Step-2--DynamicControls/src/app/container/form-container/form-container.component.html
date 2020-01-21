@@ -1,0 +1,48 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Hero name" formControlName="username" />
+  </mat-form-field>
+
+  <!-- This is the date template -->
+  <mat-form-field appearance="outline">
+    <input
+      matInput
+      [matDatepicker]="picker"
+      formControlName="dateOfBirth"
+      placeholder="Choose a date"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <!-- This is the villain fought template -->
+  <section class="villain-fought-container">
+    <div class="title-container">
+      <h1>Please enter villains you fought</h1>
+      <button type="button" mat-icon-button (click)="addVillainFoughtControl()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    <div
+      class="control"
+      formArrayName="villainFought"
+      *ngFor="let control of villainFoughtArray; let i = index"
+    >
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          placeholder="Enter Villain Name"
+          [formControlName]="i"
+        />
+        <mat-icon (click)="removeVillainFoughtControl(i)" matSuffix
+          >remove</mat-icon
+        >
+      </mat-form-field>
+    </div>
+  </section>
+
+  <button [disabled]="form.invalid && form.touched" type="submit">
+    Submit
+  </button>
+</form>

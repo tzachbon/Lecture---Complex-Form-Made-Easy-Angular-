@@ -1,0 +1,9 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Hero name" formControlName="username" />
+  </mat-form-field>
+
+  <button [disabled]="form.invalid && form.touched" type="submit">
+    Submit
+  </button>
+</form>
