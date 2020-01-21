@@ -2,7 +2,7 @@
 
 ### Forms are the life of the website world. If it is simple or super complex forms each site contains almost at least one form. In this lecture, we will learn how Angular helps us make complex forms with ease
 
-## [Finished demo](https://tzachbon.github.io/Lecture---Complex-Form-Made-Easy-Angular-/)
+### [Finished demo](https://tzachbon.github.io/Lecture---Complex-Form-Made-Easy-Angular-/)
 
 #
 
