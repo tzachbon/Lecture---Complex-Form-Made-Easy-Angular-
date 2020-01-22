@@ -21,11 +21,9 @@ ng new MyHero
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -58,14 +56,12 @@ ng g c src/app/container/form-container
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormContainerComponent } from './container/form-container/form-container.component';
 import { MatFormFieldModule, MatInputModule } from '@angular/material'; // <== The imports
-
 @NgModule({
   declarations: [AppComponent, FormContainerComponent],
   imports: [
@@ -89,7 +85,6 @@ export class AppModule {}
   <mat-form-field appearance="outline">
     <input matInput placeholder="Hero name" formControlName="username" />
   </mat-form-field>
-
   <button [disabled]="form.invalid && form.touched" type="submit">
     Submit
   </button>
@@ -101,7 +96,6 @@ export class AppModule {}
 ```typescript
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
 @Component({
   selector: 'app-form-container',
   templateUrl: './form-container.component.html',
@@ -109,19 +103,15 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class FormContainerComponent implements OnInit {
   form: FormGroup;
-
   constructor() {}
-
   ngOnInit() {
     this.initForm();
   }
-
   initForm() {
     this.form = new FormGroup({
       username: new FormControl('', [Validators.required])
     });
   }
-
   onSubmit() {
     console.log(this.form);
   }
@@ -132,20 +122,21 @@ export class FormContainerComponent implements OnInit {
 
 ![easy peasy](https://media2.giphy.com/media/3o7btNa0RUYa5E7iiQ/giphy.gif?cid=790b76115ce33e5b32bf1218e530f1c0c69cbdb5a9b2f23e&rid=giphy.gif)
 
-## But wait! We want to add more interesting and complex things!
+## But wait! We want to add more interesting and complex features!
 
-Let's add date of birth field for the user.
+Let's add a date of birth field for the user.
+
 But wait, what can we do if we want dynamic inputs?
 
 Like if our hero fought a lot of villains and we want to know all their names.
-We don't know how many villain so we can use Form Array for dynamic inputs!
+
+We don't know how many villains are there, so we can use Form Array for dynamic inputs!
 
 ## Let's make some imports first
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -166,9 +157,7 @@ import {
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-
     // This material modules
-
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
@@ -187,7 +176,6 @@ export class AppModule {}
 ```typescript
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
-
 @Component({
   selector: 'app-form-container',
   templateUrl: './form-container.component.html',
@@ -195,13 +183,10 @@ import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 })
 export class FormContainerComponent implements OnInit {
   form: FormGroup;
-
   constructor() {}
-
   ngOnInit() {
     this.initForm();
   }
-
   initForm() {
     this.form = new FormGroup({
       username: new FormControl('', [Validators.required]),
@@ -212,26 +197,22 @@ export class FormContainerComponent implements OnInit {
       ])
     });
   }
-
   // here's the method to add a control dynamically
   addVillainFoughtControl() {
     const formArray: FormArray = this.form.controls.villainFought as FormArray;
     formArray.push(new FormControl('', [Validators.required]));
   }
-
   // here's the method to remove a control dynamically
   removeVillainFoughtControl(index: number) {
     const formArray: FormArray = this.form.controls.villainFought as FormArray;
     formArray.removeAt(index);
   }
-
   // here's a computed value if we don't want to get an error in the initialization
   get villainFoughtArray() {
     return this.form
       ? (this.form.controls.villainFought as FormArray).controls
       : [];
   }
-
   onSubmit() {
     console.log(this.form.value);
   }
@@ -245,7 +226,6 @@ export class FormContainerComponent implements OnInit {
   <mat-form-field appearance="outline">
     <input matInput placeholder="Hero name" formControlName="username" />
   </mat-form-field>
-
   <!-- This is the date template -->
   <mat-form-field appearance="outline">
     <input
@@ -257,7 +237,6 @@ export class FormContainerComponent implements OnInit {
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
-
   <!-- This is the villain fought template -->
   <section class="villain-fought-container">
     <div class="title-container">
@@ -266,7 +245,6 @@ export class FormContainerComponent implements OnInit {
         <mat-icon>add</mat-icon>
       </button>
     </div>
-
     <div
       class="control"
       formArrayName="villainFought"
@@ -284,7 +262,6 @@ export class FormContainerComponent implements OnInit {
       </mat-form-field>
     </div>
   </section>
-
   <button [disabled]="form.invalid && form.touched" type="submit">
     Submit
   </button>
@@ -295,31 +272,28 @@ export class FormContainerComponent implements OnInit {
 
 ![I'm Done](https://media0.giphy.com/media/3o7qDEq2bMbcbPRQ2c/giphy.gif?cid=790b76115f8823e99a2be1cd3b062492cdc3243162a56ae0&rid=giphy.gif)
 
-# What? you want do custom validation and async validation, Let's do it!
+# What? you want to do custom validation and async validation? Let's do it!
 
 ## Optional
 
-Let's say we want our hero to be bigger that 18.
-if his date of birth indicates that is younger than 18 the whole form isn't valid.
+Let's say we want our hero to be older than 18.
+
+if his date of birth indicates that he is younger than 18, the entire form isn't valid.
 
 We should make a function for it:
 
 ```typescript
 function biggerThan18(control: AbstractControl): null | ValidationErrors {
   const birthDate = control.value;
-
   if (!(birthDate instanceof Date)) {
     return { invalidDateFormat: true };
   }
-
   const today = new Date();
   const m = today.getMonth() - birthDate.getMonth();
   let age = today.getFullYear() - birthDate.getFullYear();
-
   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
     age--;
   }
-
   return age >= 18
     ? null
     : {
@@ -342,16 +316,15 @@ And add the function to the form group:
   }
 ```
 
-## This is that easy.
+## It's that easy.
 
-# Now let's go to more complex stuff
+# Now let's move on to more complex stuff
 
 ### Async validators
 
 Async validators are exactly like custom validators but they return Promise or Observable with the same format.
 
-I made a function for demo proposes that behave like api end point and returns an observable which is boolean.
-If the username is included or not.
+I made a function for demo proposes that behave like api end point and returns an observable which is boolean. Basically it says if the username already exists or not.
 
 Now let's build the custom async validator.
 
@@ -385,7 +358,6 @@ function heroNameValidator(
       ])
     });
   }
-
 ```
 
 ## Now let's make our template smarter
@@ -393,9 +365,7 @@ function heroNameValidator(
 ```html
 <mat-form-field appearance="outline">
   <input matInput placeholder="Hero name" formControlName="username" />
-
   <!-- To show to the user the check status -->
-
   <mat-icon class="mat-18" matSuffix *ngIf="usernameControl.touched">
     <ng-container *ngIf="usernameControl.pending">
       cached
@@ -420,6 +390,7 @@ function heroNameValidator(
 My name is [Tzach Bonfil](https://tzachbonfilportfolio.web.app/) and I am a Senior Frontend Engineer in [Intelligo](https://intelligo.ai/).
 
 If you have any question i would be more than happy to answer!
+
 [tzachbonfil@gmail.com](mailto:tzachbonfil@gmail.com).
 
 Or you can reach me on [Linkedin](https://www.linkedin.com/in/tzach-bonfil-21b822187/)
