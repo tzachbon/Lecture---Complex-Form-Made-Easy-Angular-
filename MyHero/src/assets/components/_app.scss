@@ -1,13 +1,36 @@
+$color:#1976d2;
+
 .my-hero {
   @include flex-center;
+  position  : relative;
   background: rgb(255, 255, 255);
-  background: linear-gradient(90deg, rgba(255, 255, 255, 1) 70%, rgba(7, 121, 255, 1) 70%);
   width     : 100%;
   height    : 100%;
 
-  &-title {
-
+  &::after {
+    content         : '';
+    position        : absolute;
+    top             : 0;
+    right           : 0;
+    height          : 100vh;
+    width           : 30%;
+    background-color: $color;
+    background      : linear-gradient(to bottom left, #0d47a1, #42a5f5);
+    z-index         : 0;
   }
+
+
+
+
+  .logo {
+    position: absolute;
+    top     : 0;
+    left    : 0;
+    width   : 200px;
+    margin  : 2rem;
+    filter  : drop-shadow(.2rem 0 1rem rgba(128, 128, 128, 0.432));
+  }
+
 
 
   &-form {
@@ -22,36 +45,63 @@
     font-size                 : 1.5rem;
     padding                   : 10rem;
     transition                : all .15s $easing;
+    z-index                   : 1;
 
     form {
       @include flex-column;
 
-      h1 {
+      .title {
+        text-align: center;
+        margin    : 1rem 0;
+      }
+
+      h1,
+      h3 {
         color: white;
       }
 
       .villain-fought-container {
         @include flex-column;
-        align-items: center;
+
 
         .title-container {
           @include flex-row;
           margin-bottom: 1rem;
-        }
-
-        .control {
-          @include flex-row;
-          align-items: center;
-
-          .mat-icon {
-            cursor: pointer;
-          }
 
           button {
-            margin       : 1rem;
-            margin-bottom: 1rem;
+            margin: 0 1rem;
+            @include flex-center;
+            background: $color;
           }
+        }
 
+        .control-container {
+          @include flex-column;
+          max-height: 27rem;
+          min-height: 27rem;
+          overflow-y: auto;
+          width: 100%;
+
+          .control {
+            @include flex-row;
+            align-items: center;
+            width: 30rem;
+
+            .mat-form-field {
+              width: inherit;
+            }
+
+
+            .mat-icon {
+              cursor: pointer;
+            }
+
+            button {
+              margin       : 1rem;
+              margin-bottom: 1rem;
+            }
+
+          }
         }
       }
 
@@ -96,7 +146,7 @@
       left      : 0;
       height    : 5rem;
       width     : 5rem;
-      background: rgba(7, 121, 255, 1);
+      background: rgba($color, 1);
     }
   }
 }
