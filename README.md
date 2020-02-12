@@ -4,6 +4,8 @@
 
 ### [Finished demo](https://tzachbon.github.io/Lecture---Complex-Form-Made-Easy-Angular-/)
 
+### [Lecture Slide](https://docs.google.com/presentation/d/e/2PACX-1vTcjD1wIzwroavH3LvjaGZNbox-cw1zumjd6JDn-tR9H0l7X6gOsx7PyzirSnoEnhkRdIZd6Gm-K3zY/pub?start=true&loop=false&delayms=3000)
+
 #
 
 ### Let's start with a project and demonstrate how easy it is!
@@ -12,13 +14,13 @@
 
 ## Creating the project
 
-```shell
+``` shell
 ng new MyHero
 ```
 
 ## Now let's go to the App Module file and add the needed imports
 
-```typescript
+``` typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -41,19 +43,19 @@ export class AppModule {}
 
 We'll add the library to provide us with ui elements so we don't have to write everything from scratch
 
-```shell
+``` shell
 ng add @angular/material
 ```
 
 ## Create the form container component
 
-```shell
+``` shell
 ng g c src/app/container/form-container
 ```
 
 ## We need to import the necessary modules
 
-```typescript
+``` typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app.routing';
@@ -80,20 +82,20 @@ export class AppModule {}
 
 ## Creating the form template
 
-```html
+``` html
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="outline">
-    <input matInput placeholder="Hero name" formControlName="username" />
-  </mat-form-field>
-  <button [disabled]="form.invalid && form.touched" type="submit">
-    Submit
-  </button>
+    <mat-form-field appearance="outline">
+        <input matInput placeholder="Hero name" formControlName="username" />
+    </mat-form-field>
+    <button [disabled]="form.invalid && form.touched" type="submit">
+        Submit
+    </button>
 </form>
 ```
 
 ## Now we will write a code that will make the template alive
 
-```typescript
+``` typescript
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
@@ -134,7 +136,7 @@ We don't know how many villains are there, so we can use Form Array for dynamic 
 
 ## Let's make some imports first
 
-```typescript
+``` typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app.routing';
@@ -173,7 +175,7 @@ export class AppModule {}
 
 ## Let's write the code.
 
-```typescript
+``` typescript
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 @Component({
@@ -221,50 +223,35 @@ export class FormContainerComponent implements OnInit {
 
 ## The template
 
-```html
+``` html
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="outline">
-    <input matInput placeholder="Hero name" formControlName="username" />
-  </mat-form-field>
-  <!-- This is the date template -->
-  <mat-form-field appearance="outline">
-    <input
-      matInput
-      [matDatepicker]="picker"
-      formControlName="dateOfBirth"
-      placeholder="Choose a date"
-    />
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-  <!-- This is the villain fought template -->
-  <section class="villain-fought-container">
-    <div class="title-container">
-      <h1>Please enter villains you fought</h1>
-      <button type="button" mat-icon-button (click)="addVillainFoughtControl()">
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
-    <div
-      class="control"
-      formArrayName="villainFought"
-      *ngFor="let control of villainFoughtArray; let i = index"
-    >
-      <mat-form-field appearance="outline">
-        <input
-          matInput
-          placeholder="Enter Villain Name"
-          [formControlName]="i"
-        />
-        <mat-icon (click)="removeVillainFoughtControl(i)" matSuffix
-          >remove</mat-icon
-        >
-      </mat-form-field>
-    </div>
-  </section>
-  <button [disabled]="form.invalid && form.touched" type="submit">
-    Submit
-  </button>
+    <mat-form-field appearance="outline">
+        <input matInput placeholder="Hero name" formControlName="username" />
+    </mat-form-field>
+    <!-- This is the date template -->
+    <mat-form-field appearance="outline">
+        <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" placeholder="Choose a date" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <!-- This is the villain fought template -->
+    <section class="villain-fought-container">
+        <div class="title-container">
+            <h1>Please enter villains you fought</h1>
+            <button type="button" mat-icon-button (click)="addVillainFoughtControl()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <div class="control" formArrayName="villainFought" *ngFor="let control of villainFoughtArray; let i = index">
+            <mat-form-field appearance="outline">
+                <input matInput placeholder="Enter Villain Name" [formControlName]="i" />
+                <mat-icon (click)="removeVillainFoughtControl(i)" matSuffix>remove</mat-icon>
+            </mat-form-field>
+        </div>
+    </section>
+    <button [disabled]="form.invalid && form.touched" type="submit">
+        Submit
+    </button>
 </form>
 ```
 
@@ -282,7 +269,7 @@ if his date of birth indicates that he is younger than 18, the entire form isn't
 
 We should make a function for it:
 
-```typescript
+``` typescript
 function biggerThan18(control: AbstractControl): null | ValidationErrors {
   const birthDate = control.value;
   if (!(birthDate instanceof Date)) {
@@ -304,7 +291,7 @@ function biggerThan18(control: AbstractControl): null | ValidationErrors {
 
 And add the function to the form group:
 
-```typescript
+``` typescript
  initForm() {
     this.form = new FormGroup({
       username: new FormControl('', [Validators.required]),
@@ -328,7 +315,7 @@ I made a function for demo proposes that behave like api end point and returns a
 
 Now let's build the custom async validator.
 
-```typescript
+``` typescript
 function heroNameValidator(
   control: AbstractControl
 ): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
@@ -348,7 +335,7 @@ function heroNameValidator(
 }
 ```
 
-```typescript
+``` typescript
   initForm() {
     this.form = new FormGroup({
       username: new FormControl('', [Validators.required], [heroNameValidator]), // <== the third argument is a async validators array
@@ -362,24 +349,24 @@ function heroNameValidator(
 
 ## Now let's make our template smarter
 
-```html
+``` html
 <mat-form-field appearance="outline">
-  <input matInput placeholder="Hero name" formControlName="username" />
-  <!-- To show to the user the check status -->
-  <mat-icon class="mat-18" matSuffix *ngIf="usernameControl.touched">
-    <ng-container *ngIf="usernameControl.pending">
-      cached
-    </ng-container>
-    <ng-container *ngIf="usernameControl.valid">
-      done
-    </ng-container>
-    <ng-container *ngIf="usernameControl.invalid">
-      error
-    </ng-container>
-  </mat-icon>
-  <mat-error *ngIf="usernameControl.errors?.isIncluded">
-    User name already taken
-  </mat-error>
+    <input matInput placeholder="Hero name" formControlName="username" />
+    <!-- To show to the user the check status -->
+    <mat-icon class="mat-18" matSuffix *ngIf="usernameControl.touched">
+        <ng-container *ngIf="usernameControl.pending">
+            cached
+        </ng-container>
+        <ng-container *ngIf="usernameControl.valid">
+            done
+        </ng-container>
+        <ng-container *ngIf="usernameControl.invalid">
+            error
+        </ng-container>
+    </mat-icon>
+    <mat-error *ngIf="usernameControl.errors?.isIncluded">
+        User name already taken
+    </mat-error>
 </mat-form-field>
 ```
 
@@ -396,3 +383,4 @@ If you have any question i would be more than happy to answer!
 Or you can reach me on [Linkedin](https://www.linkedin.com/in/tzach-bonfil-21b822187/)
 
 Thank You!
+

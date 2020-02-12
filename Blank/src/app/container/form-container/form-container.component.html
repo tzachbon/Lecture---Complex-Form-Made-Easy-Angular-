@@ -1,0 +1,69 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h1 class="title">Hero Registration Form</h1>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Hero name" formControlName="username" />
+    <!-- To show to the user the check status -->
+    <mat-icon class="mat-18" matSuffix *ngIf="usernameControl.touched">
+      <ng-container *ngIf="usernameControl.pending">
+        cached
+      </ng-container>
+      <ng-container *ngIf="usernameControl.valid">
+        done
+      </ng-container>
+      <ng-container *ngIf="usernameControl.invalid">
+        error
+      </ng-container>
+    </mat-icon>
+    <mat-error *ngIf="usernameControl.errors?.isIncluded">
+      User name already taken
+    </mat-error>
+  </mat-form-field>
+
+  <!-- This is the date template -->
+  <mat-form-field appearance="outline">
+    <input
+      matInput
+      [matDatepicker]="picker"
+      formControlName="dateOfBirth"
+      placeholder="Choose a date"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker startView="multi-year"  touchUi #picker></mat-datepicker>
+  </mat-form-field>
+
+  <!-- This is the villain fought template -->
+  <section class="villain-fought-container">
+    <div class="title-container">
+      <h3>Please enter villains you fought</h3>
+      <button type="button" mat-mini-fab (click)="addVillainFoughtControl()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    <div class="control-container">
+      <div
+        class="control"
+        formArrayName="villainFought"
+        *ngFor="let control of villainFoughtArray; let i = index"
+      >
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Enter Villain Name"
+            [formControlName]="i"
+          />
+          <mat-icon *ngIf="i" (click)="removeVillainFoughtControl(i)" matSuffix
+            >remove</mat-icon
+          >
+        </mat-form-field>
+      </div>
+    </div>
+  </section>
+
+  <button
+    [disabled]="(form.invalid && form.touched) || usernameControl.pending"
+    type="submit"
+  >
+    Submit
+  </button>
+</form>

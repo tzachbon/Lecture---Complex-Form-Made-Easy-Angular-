@@ -1,0 +1,152 @@
+$color:#1976d2;
+
+.my-hero {
+  @include flex-center;
+  position  : relative;
+  background: rgb(255, 255, 255);
+  width     : 100%;
+  height    : 100%;
+
+  &::after {
+    content         : '';
+    position        : absolute;
+    top             : 0;
+    right           : 0;
+    height          : 100vh;
+    width           : 30%;
+    background-color: $color;
+    background      : linear-gradient(to bottom left, #0d47a1, #42a5f5);
+    z-index         : 0;
+  }
+
+
+
+
+  .logo {
+    position: absolute;
+    top     : 0;
+    left    : 0;
+    width   : 200px;
+    margin  : 2rem;
+    filter  : drop-shadow(.2rem 0 1rem rgba(128, 128, 128, 0.432));
+  }
+
+
+
+  &-form {
+
+    @include box-shadow-3;
+    position                  : relative;
+    min-height                : 70%;
+    width                     : 70%;
+    background                : rgb(34, 34, 34);
+    border-top-right-radius   : 1rem;
+    border-bottom-right-radius: 1rem;
+    font-size                 : 1.5rem;
+    padding                   : 10rem;
+    transition                : all .15s $easing;
+    z-index                   : 1;
+
+    form {
+      @include flex-column;
+
+      .title {
+        text-align: center;
+        margin    : 1rem 0;
+      }
+
+      h1,
+      h3 {
+        color: white;
+      }
+
+      .villain-fought-container {
+        @include flex-column;
+
+
+        .title-container {
+          @include flex-row;
+          margin-bottom: 1rem;
+
+          button {
+            margin: 0 1rem;
+            @include flex-center;
+            background: $color;
+          }
+        }
+
+        .control-container {
+          @include flex-column;
+          max-height: 27rem;
+          min-height: 27rem;
+          overflow-y: auto;
+          width: 100%;
+
+          .control {
+            @include flex-row;
+            align-items: center;
+            width: 30rem;
+
+            .mat-form-field {
+              width: inherit;
+            }
+
+
+            .mat-icon {
+              cursor: pointer;
+            }
+
+            button {
+              margin       : 1rem;
+              margin-bottom: 1rem;
+            }
+
+          }
+        }
+      }
+
+      input::placeholder {
+        color: white;
+      }
+
+      .add-icon {
+        cursor: pointer;
+      }
+
+      .mat-form-field-appearance-outline .mat-form-field-outline {
+        color: white;
+      }
+
+      .mat-icon,
+      .mat-icon-button svg {
+        color: white;
+      }
+
+      input.mat-input-element {
+        color: white;
+      }
+
+      button {
+        &[type="submit"] {
+          @extend .Button;
+        }
+
+        &:disabled {
+          opacity       : .5;
+          pointer-events: none;
+        }
+      }
+    }
+
+
+    &::after {
+      content   : '';
+      position  : absolute;
+      top       : 0;
+      left      : 0;
+      height    : 5rem;
+      width     : 5rem;
+      background: rgba($color, 1);
+    }
+  }
+}
