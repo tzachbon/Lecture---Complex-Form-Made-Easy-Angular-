@@ -15,7 +15,7 @@ export function checkUserName(name: string) {
 
       sub.next(isIncluded);
     }, 2000);
-  })
+  });
 }
 
 function biggerThan18(control: AbstractControl): null | ValidationErrors {
