@@ -6,6 +6,8 @@
 
 ### [Lecture Slide](https://docs.google.com/presentation/d/e/2PACX-1vTcjD1wIzwroavH3LvjaGZNbox-cw1zumjd6JDn-tR9H0l7X6gOsx7PyzirSnoEnhkRdIZd6Gm-K3zY/pub?start=true&loop=false&delayms=3000)
 
+### [Assiment](https://github.com/tzachbon/Lecture---Complex-Form-Made-Easy-Angular-)
+
 #
 
 ### Let's start with a project and demonstrate how easy it is!
